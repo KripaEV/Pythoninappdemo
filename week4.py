@@ -147,7 +147,7 @@ zooclasslist=[Lion(),Panda(),Snake()]
 for animal in zooclasslist:
     animal.feed()
     animal.do(action="Feeding", time="10:10 am")
-'''
+
 
 #defining a diet property using property deco and abstract method
 from abc import ABC, abstractmethod
@@ -220,10 +220,69 @@ po.feed()
 kingcobra=Snake()
 kingcobra.food_eaten="leaves"
 kingcobra.feed()
-'''
+''
 Feeding a lion with buffalo
 Feeding a panda with bamboo
 ValueError: this animal doesnt eat it
+''
+
+#opening file cursor in read mode
+myfile=open("myfile.txt","r")
+#read al lines and reutnr as list
+filecontentslist=myfile.readlines()
+print(filecontentslist)
+myfile.close()
+
+#append mode
+myfile=open("myfile.txt","a")
+myfile.write("\nHumpty Dumpty sat on a wall")
+myfile.close()
+
+#write mode
+myfile=open("myfile.txt","w")
+myfile.write("Humpty Dumpty sat on a wall\n")
+myfile.close()
+
+#checking pos of file ptr
+myfile=open("myfile.txt","r")
+print("file ptr now at",myfile.tell())#before reading
+
+filecontentslist=myfile.readlines()
+print("file ptr now at",myfile.tell())#after reading
+print(myfile.readline())
+''
+myfile.seek(10)
+print("file ptr now at",myfile.tell())
+filecontentslist=myfile.readlines()
+print("file ptr now at",myfile.tell())
+print(filecontentslist)
+myfile.close()
 '''
+#renaming a file 
+import os
+from sndhdr import whathdr
+if os.path.exists("myfile.txt"):
+    os.rename("myfile.txt","mynewfile.txt")
+    print("rename success")
+else:
+    print("File doesnt exist")
+
+#create a new directory
+#os.mkdir("mydir")
+#print the current dire
+print(os.getcwd())
+#change current dir
+os.chdir("mydir")
+print(os.getcwd())
+#del the dir that we created
+os.rmdir("mydir")
+#to go back to prev dir
+os.chdir(..)
+
+#run an external python file 'fileoutputsave.py'
+#save results as txt file
+import subprocess
+with open("myfile.txt","wb") as f:
+    subprocess.check_call(["python","fileoutputsave.py"],stdout=f)
 
 
