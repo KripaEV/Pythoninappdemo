@@ -228,7 +228,7 @@ ValueError: this animal doesnt eat it
 
 #opening file cursor in read mode
 myfile=open("myfile.txt","r")
-#read al lines and reutnr as list
+#read all lines and return as list
 filecontentslist=myfile.readlines()
 print(filecontentslist)
 myfile.close()
@@ -257,7 +257,7 @@ filecontentslist=myfile.readlines()
 print("file ptr now at",myfile.tell())
 print(filecontentslist)
 myfile.close()
-'''
+
 #renaming a file 
 import os
 from sndhdr import whathdr
@@ -267,22 +267,36 @@ if os.path.exists("myfile.txt"):
 else:
     print("File doesnt exist")
 
-#create a new directory
+#to create new directory 
 #os.mkdir("mydir")
-#print the current dire
-print(os.getcwd())
-#change current dir
-os.chdir("mydir")
-print(os.getcwd())
-#del the dir that we created
-os.rmdir("mydir")
-#to go back to prev dir
-os.chdir("..")
 
-#run an external python file 'fileoutputsave.py'
-#save results as txt file
+#to display cwd
+print(os.getcwd()) #C:\Users\kripa\Camp2\PythonInAppDemo
+
+#to change cwd
+#os.chdir("mydir")
+print(os.getcwd()) #C:\Users\kripa\Camp2\PythonInAppDemo\mydir
+
+#to delete directory 
+#os.rmdir("mydir")
+
+#to go back the previous directory
+#(os.chdir("..")
+print(os.getcwd())
+
+#to list all files and folders
+result = os.listdir(os.getcwd())
+print(result)
+
+
+
+#write output of a program into a file.
+#check_call() : from module subprocess to executea python script and write the output of that script to a file
+#one python file executes the script file.py and writes its output to the text file sample.txt with will automatcally close file pointer once completed
+#for that run an external python file(fileoutputsave.py) and save its results to another file as txt
 import subprocess
-with open("myfile.txt","wb") as f:
-    subprocess.check_call(["python","fileoutputsave.py"],stdout=f)
+with open("sample.txt", "wb") as f:
+    subprocess.check_call(["python","fileoutputsave.py"], stdout=f)
+'''
 
 
