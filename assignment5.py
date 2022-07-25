@@ -6,15 +6,18 @@ class calculate(ABC):
         pass
     
     @property
-    def validate_nos(self):
-        return self._num
-
-    @validate_nos.setter
-    def validate_nos(self,num2):
-        if num2!=0:
-            self._num=num2
-        else:
-            raise ZeroDivisionError("Divide by zero error")
+    def num1(self):
+        return self.__num1
+    @num1.setter
+    def num1(self, number):
+         self.__num1 = number
+    
+    @property
+    def num2(self):
+        return self.__num2
+    @num2.setter
+    def num2(self, number):
+        self.__num2 = number
 
 class calcsum(calculate):
     def calculation(self,num1,num2):
@@ -30,7 +33,7 @@ class calcprod(calculate):
 
 class calcquo(calculate):
     def calculation(self,num1,num2):
-        print(f"Quotient is {num1} and {self.validate_nos}:",num1/num2)
+        print(f"Quotient is {num1} and {num2}:",num1/num2)
 
 add = calcsum()
 diff = calcdiff()

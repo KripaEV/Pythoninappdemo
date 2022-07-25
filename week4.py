@@ -277,7 +277,7 @@ print(os.getcwd())
 #del the dir that we created
 os.rmdir("mydir")
 #to go back to prev dir
-os.chdir(..)
+os.chdir("..")
 
 #run an external python file 'fileoutputsave.py'
 #save results as txt file
