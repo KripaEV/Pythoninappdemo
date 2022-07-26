@@ -298,5 +298,16 @@ import subprocess
 with open("sample.txt", "wb") as f:
     subprocess.check_call(["python","fileoutputsave.py"], stdout=f)
 '''
+#
 
+#exception handling
+try:
+    div=4//0
+    print(div)
+except ZeroDivisionError:
+    print("dividing by zero not possible")
+except:
+    print("error")
+finally:
+    print("will never give up")
 
