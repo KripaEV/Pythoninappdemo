@@ -1,4 +1,4 @@
-'''
+""" 
 #file handling
 files=open("myfile.txt","r")#read
 #print(files.read())#reads the whole file
@@ -288,8 +288,6 @@ print(os.getcwd())
 result = os.listdir(os.getcwd())
 print(result)
 
-
-
 #write output of a program into a file.
 #check_call() : from module subprocess to executea python script and write the output of that script to a file
 #one python file executes the script file.py and writes its output to the text file sample.txt with will automatcally close file pointer once completed
@@ -297,8 +295,7 @@ print(result)
 import subprocess
 with open("sample.txt", "wb") as f:
     subprocess.check_call(["python","fileoutputsave.py"], stdout=f)
-'''
-#
+
 
 #exception handling
 try:
@@ -311,3 +308,29 @@ except:
 finally:
     print("will never give up")
 
+#formatting exception msg
+try:
+    div=4//2
+    print(div)
+except Exception as e:
+    print("dividing no by 0")
+    print(f"{type(e).__name__} has occured. More details below:")
+    print(e) #prints details of exception
+else:#including else; stmt executes if try is successful
+    print("division completed and result =",div)
+finally:
+    print("will never give up")
+
+#nested try-except
+try:
+    f=open("mynewfile.txt") #opens file
+    try:#if file can be created then execute this
+        f.write("Ola!")
+    except:#if writing cant happen
+        print("cant write the file")
+    finally:
+        f.close()
+except:#for file creation 
+    print("File cant be opened")
+
+"""

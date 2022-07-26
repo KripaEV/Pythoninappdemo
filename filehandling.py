@@ -130,3 +130,6 @@ if os.path.isdir("contacts") == True:
             f.write("Name - Phone Number\n")
 else:
     os.mkdir("contacts")
+    os.mkdir("contacts")
+
+
