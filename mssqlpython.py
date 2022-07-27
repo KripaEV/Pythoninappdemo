@@ -1,5 +1,6 @@
 #MSSQL 
 #importing pyodbc module
+from random import random
 import pyodbc
 
 #create a connection string
@@ -99,7 +100,6 @@ if x==0:
 x="hello"
 if not type(x) is int:
     raise TypeError("int values are allowed")
-'''
 
 #creating user-defined exception class
 #exceptions shld be derived frm built-in exceptions
@@ -131,5 +131,93 @@ try:
 except myerror as error:
     print("a new exception occured",error.value)
 
+
+#dunder methods
+#to view availble dunder methods in a class use dir() method
+
+print(dir(int)) #int is object of predefined class
+''
+['__abs__', '__add__', '__and__', '__bool__', '__ceil__', '__class__', '__delattr__', '__dir__', '__divmod__', '__doc__', '__eq__', '__float__', '__floor__', '__floordiv__', '__format__', 
+'__ge__', '__getattribute__', '__getnewargs__', '__gt__', '__hash__', '__index__', '__init__', '__init_subclass__', '__int__', '__invert__', '__le__', 
+'__lshift__', '__lt__', '__mod__', '__mul__', '__ne__', '__neg__', '__new__', '__or__', '__pos__', '__pow__', '__radd__', '__rand__', '__rdivmod__', '__reduce__', '__reduce_ex__', 
+'__repr__', '__rfloordiv__', '__rlshift__', '__rmod__', '__rmul__', '__ror__', 
+'__round__', '__rpow__', '__rrshift__', '__rshift__', '__rsub__', '__rtruediv__', 
+'__rxor__', '__setattr__', '__sizeof__', '__str__', '__sub__', '__subclasshook__', '__truediv__', '__trunc__', '__xor__', 'as_integer_ratio', 
+'bit_count', 'bit_length', 'conjugate', 'denominator', 'from_bytes', 'imag', 'numerator', 'real', 'to_bytes'] 
+''
+#all of these r dunder methods that we can use with int class obj
+
+#dunder __repr__()
+class Car:
+    pass
+car=Car()
+print(car) #prints the mem addr of obj car
+
+#to change the behaviour of __repr__ ()override it in the class!!
+class Car:
+    def __repr__(self):#override __repr__() so this stmt gets priority
+        return f"{self.__class__.__qualname__}"
+
+car=Car()
+print(car) #Car
+
+class Car:
+    def __str__(self):
+        return f"{self.__class__.__qualname__}"
+
+car=Car()
+print(car.__str__())
+
+#math dunder
+class randomnumbers:
+    def __init__(self,a,b):
+        self.a=a
+        self.b=b
+#obj for randomno class
+obj_a=randomnumbers(3,5)
+obj_b=randomnumbers(6,8)
+
+#adding the two obj
+print(obj_a + obj_b)#cant add two objs
+#TypeError: unsupported operand type(s) for +: 'randomnumbers' and 'randomnumbers'
+
+#__add__() dunder
+class randomnumbers:
+    def __init__(self,a,b):
+        self.a=a
+        self.b=b
+
+    #override __add__()
+    def __add__(self,other):#other is obj passing to this method
+        #returns sum of two left and right digits converted to rand no obj
+        return randomnumbers(other.a + self.a, other.b + self.b)
+
+    def __repr__(self):
+        return f"{self.__class__.__qualname__}({self.a},{self.b})"
+
+obj_a=randomnumbers(3,5)
+obj_b=randomnumbers(6,8)
+
+print(obj_a + obj_b) #randomnumbers(9,13)
+'''
+#eg 2 dunder with class objects
+class softwares:
+    names=[]
+    versions={}#holds key value pair
+    #overriding constructor
+    def __init__(self,name):
+        if name:
+            self,name=name.copy()#creates copy of list
+        for names in name:
+            self.versions[names]=1#initialize sw ver to 1
+        else:
+            raise Exception("names cant be empty")
+               
+#overriding 
+    def __str__(self):
+        s="list of sw and versions"
+        for key,value in self.versions.items():
+            s+= f"{key}:{value}\n"
+        return s
 
     
