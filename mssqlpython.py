@@ -219,5 +219,64 @@ class softwares:
         for key,value in self.versions.items():
             s+= f"{key}:{value}\n"
         return s
+    #overriding __setitem__ dunder
+    def __setitem__(self,name,version):#invoked when 
+        if name in self.versions:
+            self.versions[name]=version
+        else:
+            raise Exception("sw name doesnt exist")
+
+    #overriding __getitem__ dunder
+    def __getitem__(self,name):
+        if name in self.versions:
+            return self.versions[name]
+        else:
+            raise Exception("sw name doesnt exist")
+    
+    #overriding __delitem__ dunder
+    def __delitem__(self,name):
+        if name in self.versions:
+            del self.versions[name]#delete item frm dict versions
+            self.names.remove(name)
+
+    #overriding __len__ dunder
+    def __len__(self):
+        return len(self.names)
+
+    #overriding __contains__ dunder
+    def __contains__(self,name):
+        if name in self.versions:
+            return True
+        else:
+            return False
+
+
+#ajmi
+sw1 = softwares(['ps','msword','mspaint'])   
+#print the softaware class object
+print(sw1)
+#trying to set a new version for ms word
+sw1['msword'] = 2
+print(sw1)
+
+#trying to get a  version number for ms word
+print(sw1['msword'])
+
+#kripa
+#creating sw class obj
+sw1=softwares(['ps','msword','mspaint'])
+
+#print sw class obj
+print(sw1)
+sw1['msword']=2
+print(sw1)
+#trying to get version no for msword
+print(sw1['msword'])
+del sw1['msword']#deleting item
+print(len(sw1))#print len of sw1
+if 'msword' in sw1:
+    print("sw exists")
+else:
+    print("sw doesnt exist")
 
     
