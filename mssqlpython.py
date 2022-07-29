@@ -1,5 +1,6 @@
 #MSSQL 
 #importing pyodbc module
+import csv
 from random import random
 import pyodbc
 
@@ -199,7 +200,7 @@ obj_a=randomnumbers(3,5)
 obj_b=randomnumbers(6,8)
 
 print(obj_a + obj_b) #randomnumbers(9,13)
-'''
+
 #eg 2 dunder with class objects
 class softwares:
     names=[]
@@ -279,4 +280,71 @@ if 'msword' in sw1:
 else:
     print("sw doesnt exist")
 
-    
+ 
+
+#creating copy of list with preprocessing/condition checks
+words=["hello","world","how","are","you"]
+newlist=[] #all words containing 'o'
+
+for word in words:
+    if 'o' in word:
+        newlist.append(word)
+print(newlist)#['hello', 'world', 'how', 'you']
+
+#python list comprehension
+words=["hello","world","how","are","you"]
+newlist=[word for word in words if 'o' in word]
+print(newlist)#['hello', 'world', 'how', 'you']
+
+#generate new list with same item 
+newlist=['hello' for word in words]
+print(newlist)#['hello', 'hello', 'hello', 'hello', 'hello']
+
+newlist=[word if word!="hello" else "hi" for word in words]
+print(newlist)
+
+#csv!!
+#csv module reader()
+import csv 
+file=open("csvfile.csv")
+csvreader=csv.reader(file)#csvreader to read file obj
+
+#empty header and rows list
+header=[]
+rows=[]
+
+#next() method to read current line and stop at start of next line
+header=next(csvreader)
+print(header)
+
+for row in csvreader:
+    rows.append(row)
+print(rows)
+
+#closing file handler
+file.close()
+
+
+#reading csv file
+with open("csvfile.csv") as file:
+    content=file.readlines()
+
+#using strip to strip unwanted char with list comprehension
+content=[i.strip() for i in content] #strips \n
+#header will be first index value
+header=content[:1]
+rows=content[1:]
+print(header)
+print(rows)
+#['Names, Experience, Salary']
+#['abc,4,40000', 'def,6,90000', 'jkl,1,30000']
+'''
+import csv
+#writing to csv file
+header=['Names, Experience, Salary']
+data=[['ghi',9,60000,], ['pqr',2,20000,], ['xyz',7,60000]]
+
+with open("csvfile.csv","w",newline="") as file:
+    csvwriter=csv.writer(file) #creating csv file obj
+    csvwriter.writerow(header)
+    csvwriter.writerows(data)
