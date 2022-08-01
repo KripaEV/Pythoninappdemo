@@ -65,5 +65,6 @@ The denomination break up: dict_items([(2000, 1), (500, 3), (200, 1), (100, 0), 
 Enter an amount:4928
 The denomination break up: dict_items([(2000, 2), (500, 1), (200, 2), (100, 0), (50, 0), (20, 1), (10, 0), (5, 1), (2, 1), (1, 1)])
 
-
+Enter an amount:5134
+The denomination break up: dict_items([(2000, 2), (500, 2), (200, 0), (100, 1), (50, 0), (20, 1), (10, 1), (5, 0), (2, 2), (1, 0)])
 '''
